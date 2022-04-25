@@ -8,33 +8,29 @@ require_relative 'lib/event'
 require_relative 'lib/eventcreator'
 require_relative 'lib/calendardisplayer'
 
-hatem = User.new("hatem@gribi.com", 31)
-paul = User.new("paul@mirabel.fr", 35)
-yasmine = User.new("yasmine@letaief.com",12)
+# --- CREATION DES USERS
+user_1 = User.new("user_1@email.com", 5)
+user_2 = User.new("user_2@email.fr", 10)
+user_3 = User.new("user_3@email.com",15)
+user_4 = User.new("user_4@email.fr",20)
+user_5 = User.new("user_5@email.fr",25)
 
-soiree_play = Event.new("2022-04-24 13:30", 120, "Jouer Pepouz",[hatem.email])
-soiree_play_2 = Event.new("2022-04-24 13:30", 120, "Jouer Pepouz",[hatem.email])
-anniv_yasmine = Event.new("2022-04-22 14:40",180, "Anniv Yasmine bien",[yasmine.email])
-other = Event.new("2022-04-23 14:40",180, "Evenement Autre",[yasmine.email,paul.email])
+# --- CREATION DES USERS
+event_1 = Event.new("2022-04-01 13:30", 120, "RDV medecin",[user_1.email])
+event_2 = Event.new("2022-04-07 13:30", 120, "Meeting important",[user_1.email])
+event_3 = Event.new("2022-04-11 14:40",180, "Anniv de user_4",[user_3.email])
+event_4 = Event.new("2022-04-11", 600, "Date avec Manon", [user_4.email])
+event_5 = Event.new("2022-04-23 16:00",180, "Vernis de Sophie",[user_3.email,user_2.email])
 
-# soiree_play.add_attendent(paul)
-# anniv_yasmine.add_attendent(hatem)
-# anniv_yasmine.add_attendent(hatem)
-# anniv_yasmine.postpone_24h
+# --- MANIPULATION DES EVENTS
+event_3.add_attendent(user_1)
+event_3.add_attendent(user_2)
+event_3.postpone_24h
 
-# target = User.find_by_mail("hatem@gribi.com")
-# puts target.age
+# --- RECHECHE D'UN USER
+target = User.find_by_mail("user_1@email.com")
+puts "Le user recherché a #{target.age} ans"
 
-# EventCreator.new
-# puts "-" * 50
-# puts Event.all.select {|event| event.start_date.day == 16}
-
-
+# --- AFFICHAGE CALENDAIRE
 calendar = CalendarDisplayer.new(Event.all)
-# puts calendar.horizontal_line
-# puts calendar.day_number_line(1,7)
-# puts calendar.day_number_line(8,14)
-# puts calendar.count_event_day(23)
-# puts calendar.text_at_day(24).size
-
 calendar.display()

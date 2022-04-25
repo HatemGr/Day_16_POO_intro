@@ -40,7 +40,7 @@ class Event
 
   def postpone_24h
     @start_date += 24 * 60 * 60
-    puts "L'évènement est repoussé au #{@start_date}"
+    puts "L'évènement #{@title} est repoussé au #{@start_date}"
   end
 
   def is_past?
